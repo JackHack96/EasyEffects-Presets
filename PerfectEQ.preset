@@ -1,0 +1,361 @@
+[apps_limiter]
+enabled = false
+input gain = 0.0
+limit = 0.0
+release time = 0.5
+
+[apps_autovolume]
+enabled = false
+window = 1.0
+target = -12
+tolerance = 1
+threshold = -50
+
+[apps_panorama]
+enabled = false
+position = 0.0
+
+[apps_compressor]
+enabled = false
+use_peak = false
+attack = 101.09999999999999
+release = 401.0
+threshold = 0.0
+ratio = 1.0
+knee = 3.25
+makeup = 0.0
+
+[apps_reverb]
+enabled = false
+room size = 0.5
+damping = 0.20000000000000001
+width = 1.0
+level = 0.5
+
+[apps_highpass]
+enabled = false
+cutoff = 20
+poles = 4
+
+[apps_lowpass]
+enabled = false
+cutoff = 20000
+poles = 4
+
+[apps_equalizer]
+enabled = true
+input_gain = 0.0
+output_gain = 0.0
+band0 = 4.0
+band1 = 2.0
+band2 = 2.0
+band3 = 1.0
+band4 = 0.0
+band5 = -1.0
+band6 = -2.0
+band7 = -2.0
+band8 = 0.0
+band9 = 1.0
+band10 = 3.0
+band11 = 3.0
+band12 = 3.0
+band13 = 0.0
+band14 = 0.0
+band15 = 0.0
+band16 = 0.0
+band17 = 0.0
+band18 = 0.0
+band19 = 0.0
+band20 = 0.0
+band21 = 0.0
+band22 = 0.0
+band23 = 0.0
+band24 = 0.0
+band25 = 0.0
+band26 = 0.0
+band27 = 0.0
+band28 = 0.0
+band29 = 0.0
+band0_freq = 32.0
+band1_freq = 64.0
+band2_freq = 100.0
+band3_freq = 125.0
+band4_freq = 250.0
+band5_freq = 500.0
+band6_freq = 750.0
+band7_freq = 1000.0
+band8_freq = 2000.0
+band9_freq = 4000.0
+band10_freq = 8000.0
+band11_freq = 16000.0
+band12_freq = 20000.0
+band13_freq = 450.72000000000003
+band14_freq = 567.41999999999996
+band15_freq = 714.34000000000003
+band16_freq = 899.28999999999996
+band17_freq = 1132.1500000000001
+band18_freq = 1425.29
+band19_freq = 1794.3299999999999
+band20_freq = 2258.9299999999998
+band21_freq = 2843.8200000000002
+band22_freq = 3580.1599999999999
+band23_freq = 4507.1499999999996
+band24_freq = 5674.1599999999999
+band25_freq = 7143.3500000000004
+band26_freq = 8992.9400000000005
+band27_freq = 11321.450000000001
+band28_freq = 14252.860000000001
+band29_freq = 17943.279999999999
+band0_qfactor = 2.21
+band1_qfactor = 2.21
+band2_qfactor = 2.21
+band3_qfactor = 2.21
+band4_qfactor = 2.21
+band5_qfactor = 2.21
+band6_qfactor = 2.21
+band7_qfactor = 2.21
+band8_qfactor = 2.21
+band9_qfactor = 2.21
+band10_qfactor = 2.21
+band11_qfactor = 2.21
+band12_qfactor = 2.21
+band13_qfactor = 2.21
+band14_qfactor = 2.21
+band15_qfactor = 2.21
+band16_qfactor = 2.21
+band17_qfactor = 2.21
+band18_qfactor = 2.21
+band19_qfactor = 2.21
+band20_qfactor = 2.21
+band21_qfactor = 2.21
+band22_qfactor = 2.21
+band23_qfactor = 2.21
+band24_qfactor = 2.21
+band25_qfactor = 2.21
+band26_qfactor = 2.21
+band27_qfactor = 2.21
+band28_qfactor = 2.21
+band29_qfactor = 2.21
+band0_type = 0
+band1_type = 0
+band2_type = 0
+band3_type = 0
+band4_type = 0
+band5_type = 0
+band6_type = 0
+band7_type = 0
+band8_type = 0
+band9_type = 0
+band10_type = 0
+band11_type = 0
+band12_type = 0
+band13_type = 0
+band14_type = 0
+band15_type = 0
+band16_type = 0
+band17_type = 0
+band18_type = 0
+band19_type = 0
+band20_type = 0
+band21_type = 0
+band22_type = 0
+band23_type = 0
+band24_type = 0
+band25_type = 0
+band26_type = 0
+band27_type = 0
+band28_type = 0
+band29_type = 0
+
+[apps_exciter]
+enabled = false
+input_gain = 0.0
+output_gain = 0.0
+amount = 1.0
+harmonics = 8.5
+scope = 7500.0
+floor = 16000.0
+blend = 0.0
+
+[apps_bass_enhancer]
+enabled = false
+input_gain = 0.0
+output_gain = 0.0
+amount = 1.0
+harmonics = 8.5
+scope = 100.0
+floor = 20.0
+blend = 0.0
+
+[apps_output_limiter]
+enabled = false
+input gain = 0.0
+limit = 0.0
+release time = 2.0
+
+[mic_limiter]
+enabled = false
+input gain = 0.0
+limit = 0.0
+release time = 0.5
+
+[mic_autovolume]
+enabled = false
+window = 1.0
+target = -12
+tolerance = 1
+threshold = -50
+
+[mic_compressor]
+enabled = false
+use_peak = false
+attack = 101.09999999999999
+release = 401.0
+threshold = 0.0
+ratio = 1.0
+knee = 3.25
+makeup = 0.0
+
+[mic_reverb]
+enabled = false
+room size = 0.5
+damping = 0.20000000000000001
+width = 1.0
+level = 0.5
+
+[mic_highpass]
+enabled = false
+cutoff = 20
+poles = 4
+
+[mic_lowpass]
+enabled = false
+cutoff = 20000
+poles = 4
+
+[mic_equalizer]
+enabled = false
+input_gain = 0.0
+output_gain = 0.0
+band0 = 0.0
+band1 = 0.0
+band2 = 0.0
+band3 = 0.0
+band4 = 0.0
+band5 = 0.0
+band6 = 0.0
+band7 = 0.0
+band8 = 0.0
+band9 = 0.0
+band10 = 0.0
+band11 = 0.0
+band12 = 0.0
+band13 = 0.0
+band14 = 0.0
+band15 = 0.0
+band16 = 0.0
+band17 = 0.0
+band18 = 0.0
+band19 = 0.0
+band20 = 0.0
+band21 = 0.0
+band22 = 0.0
+band23 = 0.0
+band24 = 0.0
+band25 = 0.0
+band26 = 0.0
+band27 = 0.0
+band28 = 0.0
+band29 = 0.0
+band0_freq = 22.59
+band1_freq = 28.440000000000001
+band2_freq = 35.799999999999997
+band3_freq = 45.07
+band4_freq = 56.740000000000002
+band5_freq = 71.430000000000007
+band6_freq = 89.930000000000007
+band7_freq = 113.20999999999999
+band8_freq = 142.53
+band9_freq = 179.43000000000001
+band10_freq = 225.88999999999999
+band11_freq = 284.38
+band12_freq = 358.01999999999998
+band13_freq = 450.72000000000003
+band14_freq = 567.41999999999996
+band15_freq = 714.34000000000003
+band16_freq = 899.28999999999996
+band17_freq = 1132.1500000000001
+band18_freq = 1425.29
+band19_freq = 1794.3299999999999
+band20_freq = 2258.9299999999998
+band21_freq = 2843.8200000000002
+band22_freq = 3580.1599999999999
+band23_freq = 4507.1499999999996
+band24_freq = 5674.1599999999999
+band25_freq = 7143.3500000000004
+band26_freq = 8992.9400000000005
+band27_freq = 11321.450000000001
+band28_freq = 14252.860000000001
+band29_freq = 17943.279999999999
+band0_qfactor = 2.21
+band1_qfactor = 2.21
+band2_qfactor = 2.21
+band3_qfactor = 2.21
+band4_qfactor = 2.21
+band5_qfactor = 2.21
+band6_qfactor = 2.21
+band7_qfactor = 2.21
+band8_qfactor = 2.21
+band9_qfactor = 2.21
+band10_qfactor = 2.21
+band11_qfactor = 2.21
+band12_qfactor = 2.21
+band13_qfactor = 2.21
+band14_qfactor = 2.21
+band15_qfactor = 2.21
+band16_qfactor = 2.21
+band17_qfactor = 2.21
+band18_qfactor = 2.21
+band19_qfactor = 2.21
+band20_qfactor = 2.21
+band21_qfactor = 2.21
+band22_qfactor = 2.21
+band23_qfactor = 2.21
+band24_qfactor = 2.21
+band25_qfactor = 2.21
+band26_qfactor = 2.21
+band27_qfactor = 2.21
+band28_qfactor = 2.21
+band29_qfactor = 2.21
+band0_type = 0
+band1_type = 0
+band2_type = 0
+band3_type = 0
+band4_type = 0
+band5_type = 0
+band6_type = 0
+band7_type = 0
+band8_type = 0
+band9_type = 0
+band10_type = 0
+band11_type = 0
+band12_type = 0
+band13_type = 0
+band14_type = 0
+band15_type = 0
+band16_type = 0
+band17_type = 0
+band18_type = 0
+band19_type = 0
+band20_type = 0
+band21_type = 0
+band22_type = 0
+band23_type = 0
+band24_type = 0
+band25_type = 0
+band26_type = 0
+band27_type = 0
+band28_type = 0
+band29_type = 0
+
+
