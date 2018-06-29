@@ -1,4 +1,24 @@
 {
+    "spectrum": {
+        "show": "true",
+        "n-points": "150",
+        "height": "100",
+        "use-custom-color": "false",
+        "color": [
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    "pulseaudio": {
+        "use-default-sink": "true",
+        "use-default-source": "true",
+        "buffer-out": "200000",
+        "latency-out": "10000",
+        "buffer-in": "200000",
+        "latency-in": "10000"
+    },
     "input": {
         "plugins_order": [
             "gate",
@@ -9,7 +29,8 @@
             "equalizer",
             "deesser",
             "reverb",
-            "pitch"
+            "pitch",
+            "multiband_compressor"
         ],
         "compressor": {
             "state": "false",
@@ -41,6 +62,8 @@
         "equalizer": {
             "state": "false",
             "num-bands": "30",
+            "input-gain": "0",
+            "output-gain": "0",
             "band0": {
                 "gain": "0",
                 "frequency": "22.59",
@@ -300,6 +323,59 @@
             "voice-detection": "false",
             "voice-detection-frame-size-ms": "10",
             "voice-detection-likelihood": "low"
+        },
+        "multiband_compressor": {
+            "state": "false",
+            "input-gain": "0",
+            "output-gain": "0",
+            "freq0": "120",
+            "freq1": "1000",
+            "freq2": "6000",
+            "mode": "LR8",
+            "subband": {
+                "threshold": "-12",
+                "ratio": "2",
+                "attack": "150",
+                "release": "300",
+                "makeup": "0",
+                "knee": "9",
+                "detection": "RMS",
+                "bypass": "false",
+                "solo": "false"
+            },
+            "lowband": {
+                "threshold": "-12",
+                "ratio": "2",
+                "attack": "150",
+                "release": "300",
+                "makeup": "0",
+                "knee": "9",
+                "detection": "RMS",
+                "bypass": "false",
+                "solo": "false"
+            },
+            "midband": {
+                "threshold": "-12",
+                "ratio": "2",
+                "attack": "150",
+                "release": "300",
+                "makeup": "0",
+                "knee": "9",
+                "detection": "RMS",
+                "bypass": "false",
+                "solo": "false"
+            },
+            "highband": {
+                "threshold": "-12",
+                "ratio": "2",
+                "attack": "150",
+                "release": "300",
+                "makeup": "0",
+                "knee": "9",
+                "detection": "RMS",
+                "bypass": "false",
+                "solo": "false"
+            }
         }
     },
     "output": {
@@ -315,7 +391,10 @@
             "panorama",
             "crossfeed",
             "delay",
-            "maximizer"
+            "maximizer",
+            "expander",
+            "multiband_compressor",
+            "loudness"
         ],
         "bass_enhancer": {
             "state": "false",
@@ -357,6 +436,8 @@
         "equalizer": {
             "state": "true",
             "num-bands": "10",
+            "input-gain": "-2.0",
+            "output-gain": "0",
             "band0": {
                 "gain": "5",
                 "frequency": "32",
@@ -440,7 +521,7 @@
             "inertia": "20"
         },
         "limiter": {
-            "state": "true",
+            "state": "false",
             "input-gain": "26.000000094735913",
             "limit": "-3",
             "lookahead": "10",
@@ -495,6 +576,84 @@
             "right-balance": "1",
             "right-delay": "2.1200000000000001",
             "right-gain": "0"
+        },
+        "expander": {
+            "state": "false",
+            "sidechain": {
+                "mode": "RMS",
+                "lookahead": "0",
+                "listen": "false",
+                "source": "Middle",
+                "reactivity": "10",
+                "preamp": "0"
+            },
+            "mode": "Up",
+            "attack-level": "-12",
+            "attack-time": "20",
+            "release-level": "-100",
+            "release-time": "100",
+            "ratio": "4",
+            "knee": "-6",
+            "makeup": "0"
+        },
+        "multiband_compressor": {
+            "state": "false",
+            "input-gain": "0",
+            "output-gain": "0",
+            "freq0": "120",
+            "freq1": "1000",
+            "freq2": "6000",
+            "mode": "LR8",
+            "subband": {
+                "threshold": "-12",
+                "ratio": "2",
+                "attack": "150",
+                "release": "300",
+                "makeup": "0",
+                "knee": "9",
+                "detection": "RMS",
+                "bypass": "false",
+                "solo": "false"
+            },
+            "lowband": {
+                "threshold": "-12",
+                "ratio": "2",
+                "attack": "150",
+                "release": "300",
+                "makeup": "0",
+                "knee": "9",
+                "detection": "RMS",
+                "bypass": "false",
+                "solo": "false"
+            },
+            "midband": {
+                "threshold": "-12",
+                "ratio": "2",
+                "attack": "150",
+                "release": "300",
+                "makeup": "0",
+                "knee": "9",
+                "detection": "RMS",
+                "bypass": "false",
+                "solo": "false"
+            },
+            "highband": {
+                "threshold": "-12",
+                "ratio": "2",
+                "attack": "150",
+                "release": "300",
+                "makeup": "0",
+                "knee": "9",
+                "detection": "RMS",
+                "bypass": "false",
+                "solo": "false"
+            }
+        },
+        "loudness": {
+            "state": "false",
+            "loudness": "-3.1000000000000001",
+            "output": "-6",
+            "link": "-9.0999999999999996"
         }
     }
 }
