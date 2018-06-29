@@ -440,7 +440,7 @@
             "inertia": "20"
         },
         "limiter": {
-            "state": "true",
+            "state": "false",
             "input-gain": "26.000000094735913",
             "limit": "-3",
             "lookahead": "10",
