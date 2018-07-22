@@ -12,6 +12,12 @@ check_installation() {
     fi
 }
 
+check_impulse_response_directory() {
+    if [ ! -d "$PRESETS_DIRECTORY/irs" ]; then
+        mkdir "$PRESETS_DIRECTORY/irs"
+    fi
+}
+
 read_choice() {
     CHOICE=""
     while [[ ! $CHOICE =~ ^[1-3]+$ ]]; do
@@ -33,6 +39,8 @@ install_presets(){
     case $CHOICE in
         1)  echo "Installing Bass Enhancing + Perfect EQ preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Bass Enhancing + Perfect EQ.json" --silent
+            echo "Installing impulse response files..."
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/irs/Dolby%20ATMOS%20((128K%20MP3))%201.Default.irs" --output "$PRESETS_DIRECTORY/irs/Dolby ATMOS ((128K MP3)) 1.Default.irs" --silent
             echo "Installing Boosted preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Boosted.json" --output "$PRESETS_DIRECTORY/Boosted.json" --silent
             echo "Installing Perfect EQ preset..."
@@ -50,6 +58,7 @@ install_presets(){
 }
 
 check_installation
+check_impulse_response_directory
 install_menu
 read_choice
 install_presets
