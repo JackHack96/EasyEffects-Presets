@@ -2,7 +2,7 @@
 # This script automatically detect the PulseEffects presets directory and installs the presets
 
 check_installation() {
-    if flatpak list | grep -q "com.github.wwmm.pulseeffects"; then
+    if [[ $(flatpak list | grep -q "com.github.wwmm.pulseeffects") ]]; then
         PRESETS_DIRECTORY="$HOME/.var/app/com.github.wwmm.pulseeffects/config/PulseEffects"
     elif [ -d "$HOME/.config/PulseEffects" ]; then
         PRESETS_DIRECTORY="$HOME/.config/PulseEffects"
