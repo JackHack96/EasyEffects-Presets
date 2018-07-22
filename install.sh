@@ -2,7 +2,7 @@
 # This script automatically detect the PulseEffects presets directory and installs the presets
 
 check_installation() {
-    if [ -n "$(flatpak list | grep "com.github.wwmm.pulseeffects")" ]; then
+    if flatpak list | grep -q "com.github.wwmm.pulseeffects"; then
         PRESETS_DIRECTORY="$HOME/.var/app/com.github.wwmm.pulseeffects/config/PulseEffects"
     elif [ -d "$HOME/.config/PulseEffects" ]; then
         PRESETS_DIRECTORY="$HOME/.config/PulseEffects"
@@ -16,7 +16,7 @@ read_choice() {
     CHOICE=""
     while [[ ! $CHOICE =~ ^[1-3]+$ ]]; do
         read -r CHOICE
-        if [ $CHOICE -lt 1 ] || [ $CHOICE -gt 3 ]; then
+        if [ "$CHOICE" -lt 1 ] || [ "$CHOICE" -gt 3 ]; then
             echo "Invalid option! Please input a value between 1 and 4!"
         fi
     done
