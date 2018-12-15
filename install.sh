@@ -48,10 +48,10 @@ install_presets(){
             echo "Installing Boosted preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Boosted.json" --output "$PRESETS_DIRECTORY/Boosted.json" --silent
             echo "Installing Perfect EQ preset..."
-            curl "https://github.com/JackHack96/PulseEffects-Presets/blob/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Perfect EQ.json" --silent
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Perfect EQ.json" --silent
             ;;
         2)  echo "Installing Perfect EQ preset..."
-            curl "https://github.com/JackHack96/PulseEffects-Presets/blob/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Perfect EQ.json" --silent
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Perfect EQ.json" --silent
             ;;
         3)  echo "Installing Bass Enhancing + Perfect EQ preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Bass Enhancing + Perfect EQ.json" --silent
