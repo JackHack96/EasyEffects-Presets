@@ -267,14 +267,7 @@
             "release": "1000",
             "asc": "false",
             "asc-level": "0.5",
-            "oversampling": "1",
-            "autovolume": {
-                "state": "false",
-                "window": "1000",
-                "target": "-12",
-                "tolerance": "1",
-                "threshold": "-50"
-            }
+            "oversampling": "1"
         },
         "pitch": {
             "state": "false",
@@ -430,14 +423,13 @@
     },
     "output": {
         "plugins_order": [
-            "convolver",
             "equalizer",
+            "convolver",
             "bass_enhancer",
             "limiter",
             "filter",
             "compressor",
             "exciter",
-            "stereo_enhancer",
             "reverb",
             "crossfeed",
             "maximizer",
@@ -447,11 +439,12 @@
             "multiband_gate",
             "crystalizer",
             "stereo_tools",
-            "deesser"
+            "deesser",
+            "autogain"
         ],
         "bass_enhancer": {
-            "state": "true",
-            "input-gain": "-2",
+            "state": "false",
+            "input-gain": "0",
             "output-gain": "0",
             "amount": "0",
             "harmonics": "8.5",
@@ -496,7 +489,7 @@
         "equalizer": {
             "state": "true",
             "num-bands": "10",
-            "input-gain": "-1",
+            "input-gain": "-2",
             "output-gain": "0",
             "band0": {
                 "gain": "4",
@@ -594,20 +587,13 @@
         },
         "limiter": {
             "state": "false",
-            "input-gain": "26.000000094735913",
+            "input-gain": "0",
             "limit": "-3",
             "lookahead": "10",
             "release": "1000",
             "asc": "true",
             "asc-level": "1",
-            "oversampling": "1",
-            "autovolume": {
-                "state": "true",
-                "window": "1000",
-                "target": "-4",
-                "tolerance": "1",
-                "threshold": "0"
-            }
+            "oversampling": "1"
         },
         "maximizer": {
             "state": "false",
@@ -628,22 +614,6 @@
             "predelay": "0",
             "bass-cut": "300",
             "treble-cut": "5000"
-        },
-        "stereo_enhancer": {
-            "state": "false",
-            "input-gain": "0",
-            "output-gain": "0",
-            "middle-source": "Mid (L+R)",
-            "side-gain": "0",
-            "middle-phase": "false",
-            "left-phase": "false",
-            "left-balance": "-1",
-            "left-delay": "2.0499999999999998",
-            "left-gain": "0",
-            "right-phase": "false",
-            "right-balance": "1",
-            "right-delay": "2.1200000000000001",
-            "right-gain": "0"
         },
         "multiband_compressor": {
             "state": "false",
@@ -786,7 +756,7 @@
             "state": "true",
             "input-gain": "-2",
             "output-gain": "0",
-            "kernel-path": "\/home\/matteo\/.config\/PulseEffects\/irs\/Dolby ATMOS ((128K MP3)) 1.Default.irs",
+            "kernel-path": "\/home\/matteo\/.config\/PulseEffects\/irs\/Razor Surround ((48k Z-Edition)) 2.Stereo +20 bass.irs",
             "ir-width": "100"
         },
         "crystalizer": {
@@ -794,6 +764,15 @@
             "input-gain": "0",
             "output-gain": "0",
             "intensity": "1"
+        },
+        "autogain": {
+            "state": "false",
+            "input-gain": "0",
+            "output-gain": "0",
+            "target": "-23",
+            "weight-m": "1",
+            "weight-s": "1",
+            "weight-i": "1"
         }
     }
 }
