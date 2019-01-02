@@ -6,7 +6,7 @@ It currently contains:
 
 1. **Bass Enhancing + Perfect EQ**
 
-   This preset is based on [Ziyad Nazem's __"Perfect EQ"__](https://www.ziyadnazem.com/post/956431457/the-perfect-eq-settings-unmasking-the-eq) combined with some bass enhancing.
+   This preset is based on [Ziyad Nazem's __"Perfect EQ"__](https://www.ziyadnazem.com/post/956431457/the-perfect-eq-settings-unmasking-the-eq) combined with the Razor sorround impulse response.
 
 2. **Perfect EQ**
 
