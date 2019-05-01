@@ -38,7 +38,7 @@ install_menu(){
 install_presets(){
     case $CHOICE in
         1)  echo "Installing Bass Enhancing + Perfect EQ preset..."
-            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Bass Enhancing + Perfect EQ.json" --silent
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json" --silent
             echo "Installing impulse response files..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/irs/Dolby%20ATMOS%20((128K%20MP3))%201.Default.irs" --output "$PRESETS_DIRECTORY/irs/Dolby ATMOS ((128K MP3)) 1.Default.irs" --silent
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/irs/MaxxAudio%20Pro%20((128K%20MP3))%204.Music%20w%20MaxxSpace.irs" --output "$PRESETS_DIRECTORY/irs/MaxxAudio Pro ((128K MP3)) 4.Music w MaxxSpace.irs" --silent
@@ -59,17 +59,17 @@ install_presets(){
             echo "Selecting default impulse response file..."
             sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/Bass Enhancing + Perfect EQ.json"
             echo "Installing Boosted preset..."
-            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Boosted.json" --output "$PRESETS_DIRECTORY/Boosted.json" --silent
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Boosted.json" --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
             echo "Installing Perfect EQ preset..."
-            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Perfect EQ.json" --silent
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
         ;;
         2)  echo "Installing Perfect EQ preset..."
-            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Perfect EQ.json" --silent
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
         ;;
         3)  echo "Installing Bass Enhancing + Perfect EQ preset..."
-            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/Bass Enhancing + Perfect EQ.json" --silent
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json" --silent
             echo "Installing Boosted preset..."
-            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Boosted.json" --output "$PRESETS_DIRECTORY/Boosted.json" --silent
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Boosted.json" --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
         ;;
     esac
 }
