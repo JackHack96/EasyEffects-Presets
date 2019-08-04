@@ -57,17 +57,20 @@ install_presets(){
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/irs/HTC%20Beats%20Audio%20((Z-Edition)).irs" --output "$PRESETS_DIRECTORY/irs/HTC Beats Audio ((Z-Edition)).irs" --silent
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/irs/Waves%20MaxxAudio%20((Z-Edition))%20AudioWizard%201.Music.irs" --output "$PRESETS_DIRECTORY/irs/Waves MaxxAudio ((Z-Edition)) AudioWizard 1.Music.irs" --silent
             echo "Selecting default impulse response file..."
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/Bass Enhancing + Perfect EQ.json"
+            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json"
             echo "Installing Boosted preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Boosted.json" --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
             echo "Installing Perfect EQ preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
+            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Perfect EQ.json"
         ;;
         2)  echo "Installing Perfect EQ preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
+            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Perfect EQ.json"
         ;;
         3)  echo "Installing Bass Enhancing + Perfect EQ preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json" --silent
+            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json"
             echo "Installing Boosted preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Boosted.json" --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
         ;;
