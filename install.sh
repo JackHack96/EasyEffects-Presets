@@ -63,6 +63,8 @@ install_presets(){
             echo "Installing Perfect EQ preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
             sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Perfect EQ.json"
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Bass%20Boosted.json" --output "$PRESETS_DIRECTORY/output/Bass Boosted.json" --silent
+            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Boosted.json"
         ;;
         2)  echo "Installing Perfect EQ preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
@@ -73,6 +75,8 @@ install_presets(){
             sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json"
             echo "Installing Boosted preset..."
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Boosted.json" --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
+            curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Bass%20Boosted.json" --output "$PRESETS_DIRECTORY/output/Bass Boosted.json" --silent
+            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Boosted.json"
         ;;
     esac
 }
