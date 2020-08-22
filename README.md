@@ -16,6 +16,9 @@ It currently contains:
 
    This preset is based on [Ziyad Nazem's __"Boosted"__](https://www.ziyadnazem.com/post/956431457/the-perfect-eq-settings-unmasking-the-eq) equalizer settings, which especially enhance lower frequencies
 
+4. **Advanced Auto Gain**
+	This preset is targeted for laptop speakers and tries to improve both lower and higher frequencies. It also tries to normalize the volumes in different medias like speech and music. More information can be found in [this](https://medium.com/@susuthapa19961227/trying-to-improve-audio-in-linux-with-pulseeffects-63f37ea5b320) blog.
+
 # Installation
 The `install.sh` script will try to install the presets automatically, just fire up a terminal and run the command:
 ```shell
@@ -28,4 +31,4 @@ sudo apt install curl
 before running the script.
 
 # Manual installation
-Just clone the repository and then copy the `.preset` files into the `PulseEffects` directory you can find in the local `config` directory. Obviously the location of that directory depends on how you installed PulseEffects. If you installed it through Flatpak, you can find it in `~/.var/app/com.github.wwmm.pulseeffects/config/PulseEffects`, or if you used the PPA for Ubuntu (or the AUR package for Arch) it should be `~/.config/PulseEffects`
+Just clone the repository and then copy the `.json` files into the `PulseEffects/output` directory which you can find in the local `config` directory. Obviously the location of that directory depends on how you installed PulseEffects. If you installed it through Flatpak, you can find it in `~/.var/app/com.github.wwmm.pulseeffects/config/PulseEffects/output`, or if you used the PPA for Ubuntu (or the AUR package for Arch) it should be `~/.config/PulseEffects/output`
