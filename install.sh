@@ -85,7 +85,7 @@ install_presets(){
             sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json"
         ;;
         5)  echo "Installing  Laptop preset..."
-	    curl "https://github.com/Digitalone1/EasyEffects-Presets/raw/master/LoudnessEqualizerPE.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
+	    curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizerPE.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
 	    sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Laptop.json"
         ;;
 
