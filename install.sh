@@ -20,9 +20,9 @@ check_impulse_response_directory() {
 
 read_choice() {
     CHOICE=""
-    while [[ ! $CHOICE =~ ^[1-4]+$ ]]; do
+    while [[ ! $CHOICE =~ ^[1-5]+$ ]]; do
         read -r CHOICE
-        if [ "$CHOICE" -lt 1 ] || [ "$CHOICE" -gt 4 ]; then
+        if [ "$CHOICE" -lt 1 ] || [ "$CHOICE" -gt 5 ]; then
             echo "Invalid option! Please input a value between 1 and 5!"
         fi
     done
@@ -34,6 +34,7 @@ install_menu(){
     echo "2) Install Perfect EQ preset"
     echo "3) Install all bass boosting presets"
     echo "4) Install Advanced Auto Gain"
+    echo "5) Install Laptop speaker preset"
 }
 
 install_presets(){
@@ -83,6 +84,12 @@ install_presets(){
             curl "https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
             sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json"
         ;;
+        5)  echo "Installing  Laptop preset..."
+	    curl "https://github.com/Digitalone1/EasyEffects-Presets/raw/master/LoudnessEqualizerPE.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
+	    sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Laptop.json"
+        ;;
+
+
     esac
 }
 
