@@ -22,7 +22,7 @@ It currently contains:
 	
 5. **LoudnessEqualizer**
 
-	This preset is targeted for laptop speakers to get clear voice locals and prevent dimming of sound when bass part gets played. More info can be found [here](https://github.com/Digitalone1/EasyEffects-Presets)
+	This preset is targeted for laptop speakers to get clear voice locals and prevent dimming of sound when bass part gets played. More info can be found [Digtalone1's github](https://github.com/Digitalone1/EasyEffects-Presets)
 
 # Installation
 The `install.sh` script will try to install the presets automatically, just fire up a terminal and run the command:
