@@ -20,6 +20,10 @@ It currently contains:
 
 	This preset is targeted for laptop speakers and tries to improve both lower and higher frequencies. It also tries to normalize the volumes in different medias like speech and music. More information can be found in [this](https://medium.com/@susuthapa19961227/trying-to-improve-audio-in-linux-with-pulseeffects-63f37ea5b320) blog.
 
+5. **LoudnessEqualizer**
+
+	This preset is targeted for laptop speakers to get clear voice locals and prevent dimming of sound when bass part gets played. More info can be found on [Digtalone1's github](https://github.com/Digitalone1/EasyEffects-Presets)
+
 # Installation
 The `install.sh` script will try to install the presets automatically, just fire up a terminal and run the command:
 ```shell

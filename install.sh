@@ -69,6 +69,9 @@ install_presets(){
             sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Perfect EQ.json"
             curl "$GIT_REPOSITORY/Bass%20Boosted.json"                                                            --output "$PRESETS_DIRECTORY/output/Bass Boosted.json" --silent
             sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Boosted.json"
+            echo "Installing Advanced Auto Gain..."
+            curl "$GIT_REPOSITORY/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
+            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json"
         ;;
         2)  echo "Installing Perfect EQ preset..."
             curl "$GIT_REPOSITORY/Perfect%20EQ.json"  --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
