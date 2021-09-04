@@ -4,13 +4,15 @@
 GIT_REPOSITORY="https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master"
 
 check_installation() {
-    if flatpak list | grep -q "com.github.wwmm.easyeffects"; then
-        PRESETS_DIRECTORY="$HOME/.var/app/com.github.wwmm.easyeffects/config/easyeffects"
-        elif [ -d "$HOME/.config/easyeffects" ]; then
+    if command -v flatpak &> /dev/null; then
+        if flatpak list | grep -q "com.github.wwmm.easyeffects"; then
+            PRESETS_DIRECTORY="$HOME/.var/app/com.github.wwmm.easyeffects/config/easyeffects"
+        fi
+    elif [ -d "$HOME/.config/easyeffects" ]; then
         PRESETS_DIRECTORY="$HOME/.config/easyeffects"
     else
         echo "Error! Couldn't find EasyEffects presets directory!"
-        exit 1
+        exit 1  
     fi
 }
 
