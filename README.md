@@ -1,5 +1,7 @@
 # EasyEffects Presets
 
+**Note: if you're searching for PulseEffects presets, select the pulseffects branch from the branch menu and follow the manual installation.**
+
 A collection of presets for [wwmm's EasyEffects](https://github.com/wwmm/EasyEffects)
 
 It currently contains:
