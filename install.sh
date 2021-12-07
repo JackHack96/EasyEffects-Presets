@@ -4,16 +4,15 @@
 GIT_REPOSITORY="https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master"
 
 check_installation() {
-    if command -v flatpak &> /dev/null; then
-        if flatpak list | grep -q "com.github.wwmm.easyeffects"; then
-            PRESETS_DIRECTORY="$HOME/.var/app/com.github.wwmm.easyeffects/config/easyeffects"
-        fi
-    elif [ -d "$HOME/.config/easyeffects" ]; then
+    if command -v flatpak &> /dev/null && flatpak list | grep -q "com.github.wwmm.easyeffects"; then
+        PRESETS_DIRECTORY="$HOME/.var/app/com.github.wwmm.easyeffects/config/easyeffects"
+    elif which easyeffects >/dev/null; then
         PRESETS_DIRECTORY="$HOME/.config/easyeffects"
     else
         echo "Error! Couldn't find EasyEffects presets directory!"
         exit 1  
     fi
+    mkdir -p $PRESETS_DIRECTORY
 }
 
 check_impulse_response_directory() {
@@ -63,37 +62,34 @@ install_presets(){
             curl "$GIT_REPOSITORY/irs/HTC%20Beats%20Audio%20((Z-Edition)).irs"                                    --output "$PRESETS_DIRECTORY/irs/HTC Beats Audio ((Z-Edition)).irs" --silent
             curl "$GIT_REPOSITORY/irs/Waves%20MaxxAudio%20((Z-Edition))%20AudioWizard%201.Music.irs"              --output "$PRESETS_DIRECTORY/irs/Waves MaxxAudio ((Z-Edition)) AudioWizard 1.Music.irs" --silent
             echo "Selecting default impulse response file..."
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json"
+            sed -i "s|<PRESETS_DIRECTORY>|$PRESETS_DIRECTORY|g" "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json"
             echo "Installing Boosted preset..."
             curl "$GIT_REPOSITORY/Boosted.json"                                                                   --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
             echo "Installing Perfect EQ preset..."
             curl "$GIT_REPOSITORY/Perfect%20EQ.json"                                                              --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Perfect EQ.json"
             curl "$GIT_REPOSITORY/Bass%20Boosted.json"                                                            --output "$PRESETS_DIRECTORY/output/Bass Boosted.json" --silent
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Boosted.json"
+            sed -i "s|<PRESETS_DIRECTORY>|$PRESETS_DIRECTORY|g" "$PRESETS_DIRECTORY/output/Bass Boosted.json"
             echo "Installing Advanced Auto Gain..."
             curl "$GIT_REPOSITORY/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json"
+            echo "Installing  Laptop preset..."
+            curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizerPE.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
         ;;
         2)  echo "Installing Perfect EQ preset..."
             curl "$GIT_REPOSITORY/Perfect%20EQ.json"  --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Perfect EQ.json"
         ;;
         3)  echo "Installing Bass Enhancing + Perfect EQ preset..."
             curl "$GIT_REPOSITORY/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json" --silent
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json"
+            sed -i "s|<PRESETS_DIRECTORY>|$PRESETS_DIRECTORY|g" "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json"
             echo "Installing Boosted preset..."
             curl "$GIT_REPOSITORY/Boosted.json"                               --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
             curl "$GIT_REPOSITORY/Bass%20Boosted.json"                        --output "$PRESETS_DIRECTORY/output/Bass Boosted.json" --silent
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Bass Boosted.json"
+            sed -i "s|<PRESETS_DIRECTORY>|$PRESETS_DIRECTORY|g" "$PRESETS_DIRECTORY/output/Bass Boosted.json"
         ;;
         4)  echo "Installing Advanced Auto Gain..."
             curl "$GIT_REPOSITORY/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json"
         ;;
         5)  echo "Installing  Laptop preset..."
             curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizerPE.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
-            sed -i 's/matteo/'"$USER"'/g' "$PRESETS_DIRECTORY/output/Laptop.json"
         ;;
 
 
