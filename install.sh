@@ -10,7 +10,7 @@ check_installation() {
         PRESETS_DIRECTORY="$HOME/.config/easyeffects"
     else
         echo "Error! Couldn't find EasyEffects presets directory!"
-        exit 1  
+        exit 1
     fi
     mkdir -p $PRESETS_DIRECTORY
 }
