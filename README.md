@@ -38,4 +38,4 @@ sudo apt install curl
 before running the script.
 
 # Manual installation
-Just clone the repository and then copy the `.json` files into the `EasyEffects/output` directory which you can find in the local `config` directory. Obviously the location of that directory depends on how you installed EasyEffects. If you installed it through Flatpak, you can find it in `~/.var/app/com.github.wwmm.EasyEffects/config/easyeffects`, or if you used the PPA for Ubuntu (or the AUR package for Arch) it should be `~/.config/easyeffects`
+Just clone the repository and then copy the `.json` files into the `EasyEffects/output` directory which you can find in the local `config` directory. Obviously the location of that directory depends on how you installed EasyEffects. If you installed it through Flatpak, you can find it in `~/.var/app/com.github.wwmm.easyeffects/config/easyeffects`, or if you used the PPA for Ubuntu (or the AUR package for Arch) it should be `~/.config/easyeffects`
