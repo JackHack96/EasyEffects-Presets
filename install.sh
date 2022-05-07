@@ -22,14 +22,18 @@ check_impulse_response_directory() {
 }
 
 read_choice() {
-    CHOICE=""
-    while [[ ! $CHOICE =~ ^[1-5]+$ ]]; do
+    while :; do
         read -r CHOICE
-        if [ "$CHOICE" -lt 1 ] || [ "$CHOICE" -gt 5 ]; then
-            echo "Invalid option! Please input a value between 1 and 5!"
+        if [ -z "$CHOICE" ]; then
+            CHOICE=1 #default
         fi
+        if [[ $CHOICE =~ ^[1-5]+$ ]]; then
+            break
+        fi
+        echo "Invalid option! Please input a value between 1 and 5!"
     done
 }
+
 
 install_menu(){
     echo "Please select an option for presets installation (Default=1)"
