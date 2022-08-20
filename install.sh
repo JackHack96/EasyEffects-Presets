@@ -76,7 +76,7 @@ install_presets() {
         echo "Installing Advanced Auto Gain..."
         curl "$GIT_REPOSITORY/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
         echo "Installing  Laptop preset..."
-        curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizerPE.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
+        curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizer.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
         ;;
     2)
         echo "Installing Perfect EQ preset..."
@@ -96,8 +96,8 @@ install_presets() {
         curl "$GIT_REPOSITORY/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
         ;;
     5)
-        echo "Installing  Laptop preset..."
-        curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizerPE.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
+        echo "Installing Laptop preset..."
+        curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizer.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
         ;;
 
     esac
