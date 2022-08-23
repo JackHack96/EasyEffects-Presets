@@ -8,7 +8,7 @@ It currently contains:
 
 1. **Bass Enhancing + Perfect EQ**
 
-   This preset is based on [Ziyad Nazem's __"Perfect EQ"__](https://www.ziyadnazem.com/post/956431457/the-perfect-eq-settings-unmasking-the-eq) combined with the Razor sorround impulse response.
+   This preset is based on [Ziyad Nazem's __"Perfect EQ"__](https://www.ziyadnazem.com/post/956431457/the-perfect-eq-settings-unmasking-the-eq) combined with the Razor surround impulse response.
 
 2. **Perfect EQ**
 
@@ -31,7 +31,7 @@ The `install.sh` script will try to install the presets automatically, just fire
 ```shell
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/install.sh)"
 ```
-**NOTE**: the script requires `curl` to be installed. Ubuntu doesn't shipt with curl installed by default, so you have to first run
+**NOTE**: the script requires `curl` to be installed. Ubuntu doesn't ship with curl installed by default, so you have to first run
 ```shell
 sudo apt install curl
 ```
