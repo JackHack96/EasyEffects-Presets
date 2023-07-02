@@ -41,6 +41,7 @@ install_menu() {
     echo "3) Install all bass boosting presets"
     echo "4) Install Advanced Auto Gain"
     echo "5) Install Laptop speaker preset"
+    echo "6) Install loudness + autogain laptop preset"
 }
 
 install_presets() {
@@ -77,6 +78,8 @@ install_presets() {
         curl "$GIT_REPOSITORY/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
         echo "Installing  Laptop preset..."
         curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizer.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
+        echo "Installing loudness + autogain laptop preset..."
+        curl "$GIT_REPOSITORY/Loudness%2BAutogain.json" --output "$PRESETS_DIRECTORY/output/Loudness+Autogain.json" --silent
         ;;
     2)
         echo "Installing Perfect EQ preset..."
@@ -98,6 +101,10 @@ install_presets() {
     5)
         echo "Installing Laptop preset..."
         curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizer.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
+        ;;
+    6)
+        echo "Installing loudness + autogain laptop preset..."
+        curl "$GIT_REPOSITORY/Loudness%2BAutogain.json" --output "$PRESETS_DIRECTORY/output/Loudness+Autogain.json" --silent
         ;;
 
     esac
