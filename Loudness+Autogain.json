@@ -4,7 +4,7 @@
             "bypass": false,
             "input-gain": 0.0,
             "maximum-history": 15,
-            "output-gain": 1.0,
+            "output-gain": 1.5,
             "reference": "Geometric Mean (MSI)",
             "silence-threshold": -70.0,
             "target": -12.0
@@ -365,7 +365,7 @@
             },
             "mode": "IIR",
             "num-bands": 30,
-            "output-gain": 0.0,
+            "output-gain": 1.0,
             "pitch-left": 0.0,
             "pitch-right": 0.0,
             "right": {
@@ -672,9 +672,20 @@
             },
             "split-channels": false
         },
+        "loudness#0": {
+            "bypass": false,
+            "clipping": false,
+            "clipping-range": 6.0,
+            "fft": "4096",
+            "input-gain": 0.0,
+            "output-gain": 0.0,
+            "std": "ISO226-2003",
+            "volume": 4.000000000000002
+        },
         "plugins_order": [
             "equalizer#0",
             "bass_enhancer#0",
+            "loudness#0",
             "autogain#0",
             "compressor#0",
             "crossfeed#0"
