@@ -27,7 +27,7 @@ read_choice() {
         if [ -z "$CHOICE" ]; then
             CHOICE=1 #default
         fi
-        if [[ $CHOICE =~ ^[1-5]+$ ]]; then
+        if [[ $CHOICE =~ ^[1-6]+$ ]]; then
             break
         fi
         echo "Invalid option! Please input a value between 1 and 5!"
