@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>io.github.wwmm.easyeffects.Presets.JackHack96</id>
+  <extends>com.github.wwmm.easyeffects</extends>
+  <name>JackHack96 Easy Effects Presets</name>
+  <developer id="io.github.jackhack96">
+    <name>JackHack96</name>
+  </developer>
+  <summary>A varied collection of presets to configure Easy Effects</summary>
+  <url type="homepage">https://github.com/JackHack96/EasyEffects-Presets</url>
+  <url type="vcs-browser">https://github.com/JackHack96/EasyEffects-Presets</url>
+  <url type="help">https://github.com/JackHack96/EasyEffects-Presets</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+</component>
