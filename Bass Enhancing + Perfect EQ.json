@@ -4,7 +4,7 @@
         "convolver": {
             "input-gain": -2.0,
             "ir-width": 100,
-            "kernel-path": "<PRESETS_DIRECTORY>/irs/Razor Surround ((48k Z-Edition)) 2.Stereo +20 bass.irs",
+            "kernel-path": "Razor Surround ((48k Z-Edition)) 2.Stereo +20 bass",
             "output-gain": 0.0
         },
         "equalizer": {
