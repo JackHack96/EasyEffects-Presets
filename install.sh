@@ -74,7 +74,7 @@ install_presets() {
         sed -i "s|<PRESETS_DIRECTORY>|$PRESETS_DIRECTORY|g" "$PRESETS_DIRECTORY/output/Bass Boosted.json"
         echo "Installing Advanced Auto Gain..."
         curl "$GIT_REPOSITORY/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
-        echo "Installing  Laptop preset..."
+        echo "Installing Laptop preset..."
         curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizer.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
         echo "Installing loudness + autogain laptop preset..."
         curl "$GIT_REPOSITORY/Loudness%2BAutogain.json" --output "$PRESETS_DIRECTORY/output/Loudness+Autogain.json" --silent
