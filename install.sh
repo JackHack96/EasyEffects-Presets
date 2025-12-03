@@ -19,6 +19,9 @@ check_impulse_response_directory() {
     if [ ! -d "$PRESETS_DIRECTORY/irs" ]; then
         mkdir "$PRESETS_DIRECTORY/irs"
     fi
+    if [ ! -d "$PRESETS_DIRECTORY/output" ]; then
+        mkdir "$PRESETS_DIRECTORY/output"
+    fi
 }
 
 read_choice() {
