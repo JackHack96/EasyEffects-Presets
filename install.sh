@@ -52,10 +52,20 @@ install_presets() {
     1)
         echo "Installing Bass Enhancing + Perfect EQ preset..."
         curl "$GIT_REPOSITORY/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json" --silent
+        echo "Installing Bass Enhancing + Perfect EQ - Low Latency preset..."
+        curl "$GIT_REPOSITORY/Bass%20Enhancing%20%2B%20Perfect%20EQ%20-%20Low%20Latency.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ - Low Latency.json" --silent
         echo "Installing impulse response files..."
         curl "$GIT_REPOSITORY/irs/Dolby%20ATMOS%20((128K%20MP3))%201.Default.irs" --output "$PRESETS_DIRECTORY/irs/Dolby ATMOS ((128K MP3)) 1.Default.irs" --silent
         curl "$GIT_REPOSITORY/irs/MaxxAudio%20Pro%20((128K%20MP3))%204.Music%20w%20MaxxSpace.irs" --output "$PRESETS_DIRECTORY/irs/MaxxAudio Pro ((128K MP3)) 4.Music w MaxxSpace.irs" --silent
+        curl "$GIT_REPOSITORY/irs/MaxxAudio%20Pro%20((128K%20MP3))%204.Music%20w%20MaxxSpace%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/MaxxAudio Pro ((128K MP3)) 4.Music w MaxxSpace Low Latency.irs" --silent
+        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%201.Stereo%20+0%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 1.Stereo +0 Bass Low Latency.irs" --silent
         curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%202.Stereo%20+20%20bass.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 2.Stereo +20 bass.irs" --silent
+        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%202.Stereo%20+20%20bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 2.Stereo +20 bass Low Latency.irs" --silent
+        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%203.Stereo%20+30%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 3.Stereo +30 Bass Low Latency.irs" --silent
+        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%204.Stereo%20+50%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 4.Stereo +50 Bass Low Latency.irs" --silent
+        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%205.Stereo%20+70%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 5.Stereo +70 Bass Low Latency.irs" --silent
+        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%206.Stereo%20+80%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 6.Stereo +80 Bass Low Latency.irs" --silent
+        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%207.Stereo%20+100%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 7.Stereo +100 Bass Low Latency.irs" --silent
         curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20Earpods%20HIFI.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) Earpods HIFI.irs" --silent
         curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20MDR-E9LP%20HIFI.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) MDR-E9LP HIFI.irs" --silent
         curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20MDR-E9LP%20SM%20SRH940.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) MDR-E9LP SM SRH940.irs" --silent
@@ -68,6 +78,7 @@ install_presets() {
         curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20XBA-H3%20SM%20beyerT1.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) XBA-H3 SM beyerT1.irs" --silent
         curl "$GIT_REPOSITORY/irs/Creative%20X-Fi%20((Z-Edition))%20Crystalizer%2010%20%2B%20Expand%2010.irs" --output "$PRESETS_DIRECTORY/irs/Creative X-Fi ((Z-Edition)) Crystalizer 10 + Expand 10.irs" --silent
         curl "$GIT_REPOSITORY/irs/HTC%20Beats%20Audio%20((Z-Edition)).irs" --output "$PRESETS_DIRECTORY/irs/HTC Beats Audio ((Z-Edition)).irs" --silent
+        curl "$GIT_REPOSITORY/irs/Waves%20MaxxAudio%20((Z-Edition))%20AudioWizard%201.Music%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Waves MaxxAudio ((Z-Edition)) AudioWizard 1.Music Low Latency.irs" --silent
         curl "$GIT_REPOSITORY/irs/Waves%20MaxxAudio%20((Z-Edition))%20AudioWizard%201.Music.irs" --output "$PRESETS_DIRECTORY/irs/Waves MaxxAudio ((Z-Edition)) AudioWizard 1.Music.irs" --silent
         echo "Installing Boosted preset..."
         curl "$GIT_REPOSITORY/Boosted.json" --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
@@ -89,6 +100,8 @@ install_presets() {
     3)
         echo "Installing Bass Enhancing + Perfect EQ preset..."
         curl "$GIT_REPOSITORY/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json" --silent
+        echo "Installing Bass Enhancing + Perfect EQ - Low Latency preset..."
+        curl "$GIT_REPOSITORY/Bass%20Enhancing%20%2B%20Perfect%20EQ%20-%20Low%20Latency.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ - Low Latency.json" --silent
         sed -i "s|<PRESETS_DIRECTORY>|$PRESETS_DIRECTORY|g" "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json"
         echo "Installing Boosted preset..."
         curl "$GIT_REPOSITORY/Boosted.json" --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
