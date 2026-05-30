@@ -30,6 +30,14 @@ It currently contains:
 
 	This preset is targeted for laptop speakers to get clear voice locals and prevent dimming of sound when bass part gets played. More info can be found on [Digtalone1's github](https://github.com/Digitalone1/EasyEffects-Presets)
 
+7. **Dolby Atmos**
+
+   This preset adds a Dolby Atmos-inspired processing chain for a wider and more immersive listening experience.
+
+8. **Speaker Sync**
+
+   This preset focuses on keeping speaker playback balanced and coherent for improved stereo alignment.
+
 The repository also includes low-latency IRS variants for Razor Surround, MaxxAudio Pro, and Waves MaxxAudio.
 
 # Installation

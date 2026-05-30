@@ -30,10 +30,10 @@ read_choice() {
         if [ -z "$CHOICE" ]; then
             CHOICE=1 #default
         fi
-        if [[ $CHOICE =~ ^[1-6]+$ ]]; then
+        if [[ $CHOICE =~ ^[1-8]$ ]]; then
             break
         fi
-        echo "Invalid option! Please input a value between 1 and 5!"
+        echo "Invalid option! Please input a value between 1 and 8!"
     done
 }
 
@@ -45,6 +45,8 @@ install_menu() {
     echo "4) Install Advanced Auto Gain"
     echo "5) Install Laptop speaker preset"
     echo "6) Install loudness + autogain laptop preset"
+    echo "7) Install Dolby Atmos preset"
+    echo "8) Install Speaker Sync preset"
 }
 
 install_presets() {
@@ -92,6 +94,10 @@ install_presets() {
         curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizer.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
         echo "Installing loudness + autogain laptop preset..."
         curl "$GIT_REPOSITORY/Loudness%2BAutogain.json" --output "$PRESETS_DIRECTORY/output/Loudness+Autogain.json" --silent
+        echo "Installing Dolby Atmos preset..."
+        curl "$GIT_REPOSITORY/Dolby%20Atmos.json" --output "$PRESETS_DIRECTORY/output/Dolby Atmos.json" --silent
+        echo "Installing Speaker Sync preset..."
+        curl "$GIT_REPOSITORY/Speaker%20Sync.json" --output "$PRESETS_DIRECTORY/output/Speaker Sync.json" --silent
         ;;
     2)
         echo "Installing Perfect EQ preset..."
@@ -119,6 +125,14 @@ install_presets() {
     6)
         echo "Installing loudness + autogain laptop preset..."
         curl "$GIT_REPOSITORY/Loudness%2BAutogain.json" --output "$PRESETS_DIRECTORY/output/Loudness+Autogain.json" --silent
+        ;;
+    7)
+        echo "Installing Dolby Atmos preset..."
+        curl "$GIT_REPOSITORY/Dolby%20Atmos.json" --output "$PRESETS_DIRECTORY/output/Dolby Atmos.json" --silent
+        ;;
+    8)
+        echo "Installing Speaker Sync preset..."
+        curl "$GIT_REPOSITORY/Speaker%20Sync.json" --output "$PRESETS_DIRECTORY/output/Speaker Sync.json" --silent
         ;;
 
     esac
