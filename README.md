@@ -22,23 +22,31 @@ It currently contains:
 
    This preset is based on [Ziyad Nazem's __"Boosted"__](https://www.ziyadnazem.com/post/956431457/the-perfect-eq-settings-unmasking-the-eq) equalizer settings, which especially enhance lower frequencies
 
-5. **Advanced Auto Gain**
+5. **Bass Boosted**
 
-	This preset is targeted for laptop speakers and tries to improve both lower and higher frequencies. It also tries to normalize the volumes in different medias like speech and music. More information can be found in [this](https://medium.com/@susuthapa19961227/trying-to-improve-audio-in-linux-with-pulseeffects-63f37ea5b320) blog.
+   A stronger bass preset that combines the Razor Surround impulse response with a bass enhancer, crossfeed and a maximizer.
 
-6. **LoudnessEqualizer**
+6. **Advanced Auto Gain**
 
-	This preset is targeted for laptop speakers to get clear voice locals and prevent dimming of sound when bass part gets played. More info can be found on [Digtalone1's github](https://github.com/Digitalone1/EasyEffects-Presets)
+   This preset is targeted for laptop speakers and tries to improve both lower and higher frequencies. It also tries to normalize the volumes in different medias like speech and music. More information can be found in [this](https://medium.com/@susuthapa19961227/trying-to-improve-audio-in-linux-with-pulseeffects-63f37ea5b320) blog.
 
-7. **Dolby Atmos**
+7. **Laptop** (LoudnessEqualizer)
+
+   This preset is targeted for laptop speakers to get clear voice locals and prevent dimming of sound when bass part gets played. It is downloaded by the installer from [Digitalone1's github](https://github.com/Digitalone1/EasyEffects-Presets) and saved as `Laptop.json`.
+
+8. **Loudness+Autogain**
+
+   Another laptop speaker preset that combines loudness compensation, a bass enhancer, auto gain, a compressor and crossfeed.
+
+9. **Dolby Atmos**
 
    This preset adds a Dolby Atmos-inspired processing chain for a wider and more immersive listening experience.
 
-8. **Speaker Sync**
+10. **Speaker Sync**
 
-   This preset focuses on keeping speaker playback balanced and coherent for improved stereo alignment.
+    A light crossfeed with a gentle equalizer curve, with delay and stereo tools stages ready to be tuned for your speakers.
 
-The repository also includes low-latency IRS variants for Razor Surround, MaxxAudio Pro, and Waves MaxxAudio.
+The repository also includes low-latency IRS variants for Razor Surround, MaxxAudio Pro, and Waves MaxxAudio, plus a library of additional impulse responses (Accudio, Creative X-Fi, Dolby ATMOS, HTC Beats Audio, MaxxAudio) that are not used by any preset but can be selected in the Convolver effect.
 
 # Installation
 The `install.sh` script will try to install the presets automatically, just fire up a terminal and run the command:
@@ -54,4 +62,24 @@ sudo apt install curl
 before running the script.
 
 # Manual installation
-Just clone the repository and then copy the `.json` files into the `EasyEffects/output` directory which you can find in the local `config` directory. Obviously the location of that directory depends on how you installed EasyEffects. If you installed it through Flatpak, you can find it in `~/.var/app/com.github.wwmm.easyeffects/config/easyeffects`, or if you used the PPA for Ubuntu (or the AUR package for Arch) it should be `~/.config/easyeffects`
+Clone the repository, then copy the `.json` files into the `output` directory and the `.irs` files into the `irs` directory of your EasyEffects data directory. The location depends on your EasyEffects version and on how you installed it:
+
+| | EasyEffects 8.0 and newer | EasyEffects 7.x and older |
+|---|---|---|
+| Distribution package (PPA, AUR, ...) | `~/.local/share/easyeffects` | `~/.config/easyeffects` |
+| Flatpak | `~/.var/app/com.github.wwmm.easyeffects/data/easyeffects` | `~/.var/app/com.github.wwmm.easyeffects/config/easyeffects` |
+
+For example, for EasyEffects 8 installed from your distribution:
+```shell
+mkdir -p ~/.local/share/easyeffects/{output,irs}
+cp *.json ~/.local/share/easyeffects/output/
+cp irs/*.irs ~/.local/share/easyeffects/irs/
+```
+
+The installer detects the directory automatically; you can override it by setting `PRESETS_DIRECTORY` before running it.
+
+# Adding a preset
+1. Add the preset `.json` file (and any `.irs` file it uses in `irs/`, referenced by `kernel-name`).
+2. Add it to the matching array in `install.sh` (and to the menu if it needs a new option).
+3. Describe it in this README.
+4. Run `python3 scripts/check_refs.py` and `shellcheck install.sh`; CI runs the same checks on every pull request.
