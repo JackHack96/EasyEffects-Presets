@@ -7,9 +7,27 @@
     <name>JackHack96</name>
   </developer>
   <summary>A varied collection of presets to configure Easy Effects</summary>
+  <description>
+    <p>
+      Output presets for Easy Effects, including equalizer curves (Perfect EQ, Boosted),
+      bass enhancing presets based on the Razor Surround impulse responses, loudness and
+      auto gain presets for laptop speakers, Dolby Atmos-inspired and Speaker Sync presets.
+    </p>
+    <p>
+      A library of additional impulse responses for the Convolver effect is also included.
+    </p>
+  </description>
   <url type="homepage">https://github.com/JackHack96/EasyEffects-Presets</url>
   <url type="vcs-browser">https://github.com/JackHack96/EasyEffects-Presets</url>
   <url type="help">https://github.com/JackHack96/EasyEffects-Presets</url>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="2026.05.30" date="2026-05-30">
+      <description>
+        <p>Added the Dolby Atmos and Speaker Sync presets and low-latency impulse responses.</p>
+      </description>
+    </release>
+  </releases>
 </component>
