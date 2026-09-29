@@ -1,27 +1,132 @@
 #!/usr/bin/env bash
 # This script automatically detect the EasyEffects presets directory and installs the presets
+set -euo pipefail
 
-GIT_REPOSITORY="https://raw.githubusercontent.com/JackHack96/EasyEffects-Presets/master"
+GIT_REPOSITORY="${GIT_REPOSITORY:-https://raw.githubusercontent.com/JackHack96/EasyEffects-Presets/master}"
+FLATPAK_ID="com.github.wwmm.easyeffects"
+LAPTOP_PRESET_URL="https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizer.json"
 
-check_installation() {
-    if command -v flatpak &>/dev/null && flatpak list | grep -q "com.github.wwmm.easyeffects"; then
-        PRESETS_DIRECTORY="$HOME/.var/app/com.github.wwmm.easyeffects/config/easyeffects"
-    elif which easyeffects >/dev/null; then
-        PRESETS_DIRECTORY="$HOME/.config/easyeffects"
-    else
-        echo "Error! Couldn't find EasyEffects presets directory!"
-        exit 1
-    fi
-    mkdir -p $PRESETS_DIRECTORY
+PERFECT_EQ_PRESETS=("Perfect EQ.json")
+BASS_PRESETS=(
+    "Bass Enhancing + Perfect EQ.json"
+    "Bass Enhancing + Perfect EQ - Low Latency.json"
+    "Boosted.json"
+    "Bass Boosted.json"
+)
+AUTOGAIN_PRESETS=("Advanced Auto Gain.json")
+LOUDNESS_AUTOGAIN_PRESETS=("Loudness+Autogain.json")
+DOLBY_ATMOS_PRESETS=("Dolby Atmos.json")
+SPEAKER_SYNC_PRESETS=("Speaker Sync.json")
+
+# Impulse responses used by the bass presets (plus the other Razor Surround intensities)
+BASS_IRS=(
+    "Razor Surround ((48k Z-Edition)) 1.Stereo +0 Bass Low Latency.irs"
+    "Razor Surround ((48k Z-Edition)) 2.Stereo +20 bass.irs"
+    "Razor Surround ((48k Z-Edition)) 2.Stereo +20 bass Low Latency.irs"
+    "Razor Surround ((48k Z-Edition)) 3.Stereo +30 Bass Low Latency.irs"
+    "Razor Surround ((48k Z-Edition)) 4.Stereo +50 Bass Low Latency.irs"
+    "Razor Surround ((48k Z-Edition)) 5.Stereo +70 Bass Low Latency.irs"
+    "Razor Surround ((48k Z-Edition)) 6.Stereo +80 Bass Low Latency.irs"
+    "Razor Surround ((48k Z-Edition)) 7.Stereo +100 Bass Low Latency.irs"
+)
+# Additional impulse responses, not used by any preset but available in the Convolver
+EXTRA_IRS=(
+    "Accudio ((48kHz Z.E.)) Earpods HIFI.irs"
+    "Accudio ((48kHz Z.E.)) MDR-E9LP HIFI.irs"
+    "Accudio ((48kHz Z.E.)) MDR-E9LP SM SRH940.irs"
+    "Accudio ((48kHz Z.E.)) MDR-E9LP SM XBA3.irs"
+    "Accudio ((48kHz Z.E.)) MDR-E9LP SM beyerT1.irs"
+    "Accudio ((48kHz Z.E.)) MDR-XB500 HIFI.irs"
+    "Accudio ((48kHz Z.E.)) XBA-H3 HIFI.irs"
+    "Accudio ((48kHz Z.E.)) XBA-H3 SM SRH940.irs"
+    "Accudio ((48kHz Z.E.)) XBA-H3 SM XBA4.irs"
+    "Accudio ((48kHz Z.E.)) XBA-H3 SM beyerT1.irs"
+    "Creative X-Fi ((Z-Edition)) Crystalizer 10 + Expand 10.irs"
+    "Dolby ATMOS ((128K MP3)) 1.Default.irs"
+    "HTC Beats Audio ((Z-Edition)).irs"
+    "MaxxAudio Pro ((128K MP3)) 4.Music w MaxxSpace.irs"
+    "MaxxAudio Pro ((128K MP3)) 4.Music w MaxxSpace Low Latency.irs"
+    "Waves MaxxAudio ((Z-Edition)) AudioWizard 1.Music.irs"
+    "Waves MaxxAudio ((Z-Edition)) AudioWizard 1.Music Low Latency.irs"
+)
+
+urlencode() {
+    local string="$1" encoded="" char i
+    for ((i = 0; i < ${#string}; i++)); do
+        char="${string:i:1}"
+        case "$char" in
+        [a-zA-Z0-9.~_-]) encoded+="$char" ;;
+        *) encoded+=$(printf '%%%02X' "'$char") ;;
+        esac
+    done
+    printf '%s' "$encoded"
 }
 
-check_impulse_response_directory() {
-    if [ ! -d "$PRESETS_DIRECTORY/irs" ]; then
-        mkdir "$PRESETS_DIRECTORY/irs"
+fetch() {
+    local url="$1" destination="$2"
+    if ! curl -fsSL --retry 2 "$url" --output "$destination"; then
+        rm -f "$destination"
+        echo "Error! Couldn't download $url" >&2
+        exit 1
     fi
-    if [ ! -d "$PRESETS_DIRECTORY/output" ]; then
-        mkdir "$PRESETS_DIRECTORY/output"
+}
+
+install_presets_files() {
+    local file
+    for file in "$@"; do
+        echo "Installing ${file%.json} preset..."
+        fetch "$GIT_REPOSITORY/$(urlencode "$file")" "$PRESETS_DIRECTORY/output/$file"
+    done
+}
+
+install_irs_files() {
+    local file
+    echo "Installing impulse response files..."
+    for file in "$@"; do
+        fetch "$GIT_REPOSITORY/irs/$(urlencode "$file")" "$PRESETS_DIRECTORY/irs/$file"
+    done
+}
+
+install_laptop_preset() {
+    echo "Installing Laptop preset..."
+    fetch "$LAPTOP_PRESET_URL" "$PRESETS_DIRECTORY/output/Laptop.json"
+}
+
+# Prints the major version of EasyEffects, or nothing if it can't be determined
+major_version() {
+    grep -oE '[0-9]+(\.[0-9]+)+' | head -n1 | cut -d. -f1
+}
+
+# EasyEffects >= 8 keeps presets in the data directory, older versions in the config directory
+pick_directory() {
+    local data_dir="$1" config_dir="$2" version="$3"
+    if [ -n "$version" ]; then
+        if [ "$version" -ge 8 ]; then echo "$data_dir"; else echo "$config_dir"; fi
+    elif [ -d "$data_dir" ] || [ ! -d "$config_dir" ]; then
+        echo "$data_dir"
+    else
+        echo "$config_dir"
     fi
+}
+
+check_installation() {
+    if [ -n "${PRESETS_DIRECTORY:-}" ]; then
+        : # explicitly set by the user
+    elif command -v flatpak &>/dev/null && flatpak info "$FLATPAK_ID" &>/dev/null; then
+        PRESETS_DIRECTORY=$(pick_directory \
+            "$HOME/.var/app/$FLATPAK_ID/data/easyeffects" \
+            "$HOME/.var/app/$FLATPAK_ID/config/easyeffects" \
+            "$(flatpak info "$FLATPAK_ID" 2>/dev/null | grep -i '^ *version:' | major_version || true)")
+    elif command -v easyeffects &>/dev/null; then
+        PRESETS_DIRECTORY=$(pick_directory \
+            "${XDG_DATA_HOME:-$HOME/.local/share}/easyeffects" \
+            "${XDG_CONFIG_HOME:-$HOME/.config}/easyeffects" \
+            "$(easyeffects --version 2>/dev/null | major_version || true)")
+    else
+        echo "Error! Couldn't find EasyEffects presets directory!" >&2
+        exit 1
+    fi
+    mkdir -p "$PRESETS_DIRECTORY/output" "$PRESETS_DIRECTORY/irs"
 }
 
 read_choice() {
@@ -52,95 +157,26 @@ install_menu() {
 install_presets() {
     case $CHOICE in
     1)
-        echo "Installing Bass Enhancing + Perfect EQ preset..."
-        curl "$GIT_REPOSITORY/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json" --silent
-        echo "Installing Bass Enhancing + Perfect EQ - Low Latency preset..."
-        curl "$GIT_REPOSITORY/Bass%20Enhancing%20%2B%20Perfect%20EQ%20-%20Low%20Latency.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ - Low Latency.json" --silent
-        echo "Installing impulse response files..."
-        curl "$GIT_REPOSITORY/irs/Dolby%20ATMOS%20((128K%20MP3))%201.Default.irs" --output "$PRESETS_DIRECTORY/irs/Dolby ATMOS ((128K MP3)) 1.Default.irs" --silent
-        curl "$GIT_REPOSITORY/irs/MaxxAudio%20Pro%20((128K%20MP3))%204.Music%20w%20MaxxSpace.irs" --output "$PRESETS_DIRECTORY/irs/MaxxAudio Pro ((128K MP3)) 4.Music w MaxxSpace.irs" --silent
-        curl "$GIT_REPOSITORY/irs/MaxxAudio%20Pro%20((128K%20MP3))%204.Music%20w%20MaxxSpace%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/MaxxAudio Pro ((128K MP3)) 4.Music w MaxxSpace Low Latency.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%201.Stereo%20+0%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 1.Stereo +0 Bass Low Latency.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%202.Stereo%20+20%20bass.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 2.Stereo +20 bass.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%202.Stereo%20+20%20bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 2.Stereo +20 bass Low Latency.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%203.Stereo%20+30%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 3.Stereo +30 Bass Low Latency.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%204.Stereo%20+50%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 4.Stereo +50 Bass Low Latency.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%205.Stereo%20+70%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 5.Stereo +70 Bass Low Latency.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%206.Stereo%20+80%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 6.Stereo +80 Bass Low Latency.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Razor%20Surround%20((48k%20Z-Edition))%207.Stereo%20+100%20Bass%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Razor Surround ((48k Z-Edition)) 7.Stereo +100 Bass Low Latency.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20Earpods%20HIFI.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) Earpods HIFI.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20MDR-E9LP%20HIFI.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) MDR-E9LP HIFI.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20MDR-E9LP%20SM%20SRH940.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) MDR-E9LP SM SRH940.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20MDR-E9LP%20SM%20XBA3.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) MDR-E9LP SM XBA3.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20MDR-E9LP%20SM%20beyerT1.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) MDR-E9LP SM beyerT1.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20MDR-XB500%20HIFI.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) MDR-XB500 HIFI.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20XBA-H3%20HIFI.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) XBA-H3 HIFI.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20XBA-H3%20SM%20SRH940.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) XBA-H3 SM SRH940.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20XBA-H3%20SM%20XBA4.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) XBA-H3 SM XBA4.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Accudio%20((48kHz%20Z.E.))%20XBA-H3%20SM%20beyerT1.irs" --output "$PRESETS_DIRECTORY/irs/Accudio ((48kHz Z.E.)) XBA-H3 SM beyerT1.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Creative%20X-Fi%20((Z-Edition))%20Crystalizer%2010%20%2B%20Expand%2010.irs" --output "$PRESETS_DIRECTORY/irs/Creative X-Fi ((Z-Edition)) Crystalizer 10 + Expand 10.irs" --silent
-        curl "$GIT_REPOSITORY/irs/HTC%20Beats%20Audio%20((Z-Edition)).irs" --output "$PRESETS_DIRECTORY/irs/HTC Beats Audio ((Z-Edition)).irs" --silent
-        curl "$GIT_REPOSITORY/irs/Waves%20MaxxAudio%20((Z-Edition))%20AudioWizard%201.Music%20Low%20Latency.irs" --output "$PRESETS_DIRECTORY/irs/Waves MaxxAudio ((Z-Edition)) AudioWizard 1.Music Low Latency.irs" --silent
-        curl "$GIT_REPOSITORY/irs/Waves%20MaxxAudio%20((Z-Edition))%20AudioWizard%201.Music.irs" --output "$PRESETS_DIRECTORY/irs/Waves MaxxAudio ((Z-Edition)) AudioWizard 1.Music.irs" --silent
-        echo "Installing Boosted preset..."
-        curl "$GIT_REPOSITORY/Boosted.json" --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
-        echo "Installing Perfect EQ preset..."
-        curl "$GIT_REPOSITORY/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
-        curl "$GIT_REPOSITORY/Bass%20Boosted.json" --output "$PRESETS_DIRECTORY/output/Bass Boosted.json" --silent
-        sed -i "s|<PRESETS_DIRECTORY>|$PRESETS_DIRECTORY|g" "$PRESETS_DIRECTORY/output/Bass Boosted.json"
-        echo "Installing Advanced Auto Gain..."
-        curl "$GIT_REPOSITORY/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
-        echo "Installing Laptop preset..."
-        curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizer.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
-        echo "Installing loudness + autogain laptop preset..."
-        curl "$GIT_REPOSITORY/Loudness%2BAutogain.json" --output "$PRESETS_DIRECTORY/output/Loudness+Autogain.json" --silent
-        echo "Installing Dolby Atmos preset..."
-        curl "$GIT_REPOSITORY/Dolby%20Atmos.json" --output "$PRESETS_DIRECTORY/output/Dolby Atmos.json" --silent
-        echo "Installing Speaker Sync preset..."
-        curl "$GIT_REPOSITORY/Speaker%20Sync.json" --output "$PRESETS_DIRECTORY/output/Speaker Sync.json" --silent
+        install_presets_files "${PERFECT_EQ_PRESETS[@]}" "${BASS_PRESETS[@]}" "${AUTOGAIN_PRESETS[@]}" \
+            "${LOUDNESS_AUTOGAIN_PRESETS[@]}" "${DOLBY_ATMOS_PRESETS[@]}" "${SPEAKER_SYNC_PRESETS[@]}"
+        install_laptop_preset
+        install_irs_files "${BASS_IRS[@]}" "${EXTRA_IRS[@]}"
         ;;
-    2)
-        echo "Installing Perfect EQ preset..."
-        curl "$GIT_REPOSITORY/Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Perfect EQ.json" --silent
-        ;;
+    2) install_presets_files "${PERFECT_EQ_PRESETS[@]}" ;;
     3)
-        echo "Installing Bass Enhancing + Perfect EQ preset..."
-        curl "$GIT_REPOSITORY/Bass%20Enhancing%20%2B%20Perfect%20EQ.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json" --silent
-        echo "Installing Bass Enhancing + Perfect EQ - Low Latency preset..."
-        curl "$GIT_REPOSITORY/Bass%20Enhancing%20%2B%20Perfect%20EQ%20-%20Low%20Latency.json" --output "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ - Low Latency.json" --silent
-        sed -i "s|<PRESETS_DIRECTORY>|$PRESETS_DIRECTORY|g" "$PRESETS_DIRECTORY/output/Bass Enhancing + Perfect EQ.json"
-        echo "Installing Boosted preset..."
-        curl "$GIT_REPOSITORY/Boosted.json" --output "$PRESETS_DIRECTORY/output/Boosted.json" --silent
-        curl "$GIT_REPOSITORY/Bass%20Boosted.json" --output "$PRESETS_DIRECTORY/output/Bass Boosted.json" --silent
-        sed -i "s|<PRESETS_DIRECTORY>|$PRESETS_DIRECTORY|g" "$PRESETS_DIRECTORY/output/Bass Boosted.json"
+        install_presets_files "${BASS_PRESETS[@]}"
+        install_irs_files "${BASS_IRS[@]}"
         ;;
-    4)
-        echo "Installing Advanced Auto Gain..."
-        curl "$GIT_REPOSITORY/Advanced%20Auto%20Gain.json" --output "$PRESETS_DIRECTORY/output/Advanced Auto Gain.json" --silent
-        ;;
-    5)
-        echo "Installing Laptop preset..."
-        curl "https://raw.githubusercontent.com/Digitalone1/EasyEffects-Presets/master/LoudnessEqualizer.json" --output "$PRESETS_DIRECTORY/output/Laptop.json" --silent
-        ;;
-    6)
-        echo "Installing loudness + autogain laptop preset..."
-        curl "$GIT_REPOSITORY/Loudness%2BAutogain.json" --output "$PRESETS_DIRECTORY/output/Loudness+Autogain.json" --silent
-        ;;
-    7)
-        echo "Installing Dolby Atmos preset..."
-        curl "$GIT_REPOSITORY/Dolby%20Atmos.json" --output "$PRESETS_DIRECTORY/output/Dolby Atmos.json" --silent
-        ;;
-    8)
-        echo "Installing Speaker Sync preset..."
-        curl "$GIT_REPOSITORY/Speaker%20Sync.json" --output "$PRESETS_DIRECTORY/output/Speaker Sync.json" --silent
-        ;;
-
+    4) install_presets_files "${AUTOGAIN_PRESETS[@]}" ;;
+    5) install_laptop_preset ;;
+    6) install_presets_files "${LOUDNESS_AUTOGAIN_PRESETS[@]}" ;;
+    7) install_presets_files "${DOLBY_ATMOS_PRESETS[@]}" ;;
+    8) install_presets_files "${SPEAKER_SYNC_PRESETS[@]}" ;;
     esac
-
 }
 
 check_installation
-check_impulse_response_directory
 install_menu
 read_choice
 install_presets
+echo "Done! Presets installed in $PRESETS_DIRECTORY"

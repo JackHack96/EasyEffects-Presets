@@ -1,0 +1,23 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check preset JSON and file references
+        run: python3 scripts/check_refs.py
+
+      - name: ShellCheck install.sh
+        run: shellcheck install.sh
+
+      - name: Validate AppStream metainfo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y appstream
+          appstreamcli validate --no-net *.metainfo.xml
